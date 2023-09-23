@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-export default function ForgotPasswordScreen({ onBackToLogin }) {
+export default function ForgotPasswordScreen({  }) {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true); // Estado para la validación del email
 
@@ -18,32 +19,33 @@ export default function ForgotPasswordScreen({ onBackToLogin }) {
   };
 
   const handleResetPassword = () => {
-    // Aquí puedes implementar la lógica para enviar un correo de restablecimiento de contraseña
+    if (email.trim() === '') {
+      alert('Por favor, ingrese su dirección de correo electrónico.');
+    } else if (!isEmailValid) {
+      alert('Por favor, ingrese una dirección de correo electrónico válida.');
+    } else {
+      // Aquí puedes implementar la lógica para enviar un correo de restablecimiento de contraseña
+    }
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}> 
+    <View style={styles.innerContainer}>
       <Image style={styles.logo}
         source={require("./assets/fantasma.png")}>
       </Image>
       <Text style={styles.title}>Restablecer Contraseña</Text>
-      <TextInput
-        style={[
-          styles.input,
-          !isEmailValid && styles.inputError, // Aplicar un estilo de error si el email no es válido
-        ]}
+      <TextInput style={styles.input}
         placeholder="Email"
         placeholderTextColor="#888"
         value={email}
         onChangeText={handleEmailChange}
       />
-      {!isEmailValid && (
-        <Text style={styles.errorText}>Ingrese un correo electrónico válido</Text>
-      )}
       <TouchableOpacity style={styles.resetButton} onPress={handleResetPassword}>
         <Text style={styles.resetButtonText}>Enviar</Text>
       </TouchableOpacity>
     </View>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -51,8 +53,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  innerContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
+    marginTop: 150,
   },
   logo: {
     width: 100, 
@@ -72,14 +79,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
-  inputError: {
-    borderColor: 'red',
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 15,
-    marginBottom: 10,
-  },
   resetButton: {
     width: '80%',
     height: 40,
@@ -91,13 +90,6 @@ const styles = StyleSheet.create({
   },
   resetButtonText: {
     color: '#fff',
-    fontSize: 16,
-  },
-  backToLogin: {
-    marginTop: 10,
-  },
-  backToLoginText: {
-    color: '#007AFF',
     fontSize: 16,
   },
 });
