@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
-
 import LoginScreen from './LoginScreen';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
+import SignUpScreen from './SignUpScreen';
 
 
 const Stack = createStackNavigator();
@@ -11,6 +11,7 @@ export function AppNavigation() {
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="SignUp" component={SignUpScreen}/>
     </Stack.Navigator>
   );
 }
