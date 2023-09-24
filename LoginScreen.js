@@ -15,7 +15,7 @@ function LoginScreen({ navigation }) {
 
   const handleSignUp = () => {
     navigation.navigate('SignUp');
-  }
+  };
 
   const isEmailValid = (email) => {
     // Expresión regular para validar correos electrónicos
@@ -35,7 +35,9 @@ function LoginScreen({ navigation }) {
       alert('La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un número.');
     } else {
       // Lógica de inicio de sesión
+      navigation.navigate("Task");
       console.log(email);
+      console.log(password);
     }
   };
   
