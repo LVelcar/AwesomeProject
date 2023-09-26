@@ -164,7 +164,10 @@ const styles = StyleSheet.create({
         textAlign: 'left', 
     },    
     completedTaskText: {
-        color: '#ccc',
+        color: '#ccc', 
+        flex: 1,
+        flexWrap: 'wrap',
+        textAlign: 'left',
     },
     deleteButton: {
         width: 40,
