@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -30,9 +30,9 @@ function LoginScreen({ navigation }) {
 
   const handleSubmit = () => {
     if (!isEmailValid(email)) {
-      alert('Ingrese un correo electrónico válido');
+      Alert.alert('Error','Ingrese un correo electrónico válido');
     } else if (!isPasswordValid(password)) {
-      alert('La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un número.');
+      Alert.alert('Error','La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un número.');
     } else {
       // Lógica de inicio de sesión
       navigation.navigate("Task");
